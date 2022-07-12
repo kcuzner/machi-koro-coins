@@ -17,6 +17,8 @@ $fn = 180;
 pad_manifold = 0.01 * mm; //padding for maintaining a manifold (avoiding zero-width shapes)
 
 svg_size = 15 * mm;
+svg_x_tweak = -1 * mm;
+svg_y_tweak = 0 * mm;
 
 coin_height = 2 * mm;
 heads_height = 0.5 * mm;
@@ -26,14 +28,18 @@ ring_size = 2 * mm;
 
 module Heads() {
   translate([0, 0, -pad_manifold]) {
-    linear_extrude(height = heads_height + pad_manifold) {
-      import("one.svg", center=true);
+    translate([svg_x_tweak, svg_y_tweak, 0]) {
+      linear_extrude(height = heads_height + pad_manifold) {
+        import("one.svg", center=true);
+      }
     }
     difference() {
-      cylinder(h=heads_height, r=svg_size / 2, center=false);
-      cylinder(
-        h=heads_height + 2 * pad_manifold,
-        r=svg_size/2 - ring_size, center=true);
+      cylinder(h=heads_height + pad_manifold, r=svg_size / 2, center=false);
+      translate([0, 0, -pad_manifold]) {
+        cylinder(
+          h=heads_height + 3 * pad_manifold,
+          r=svg_size/2 - ring_size, center=false);
+      }
     }
   }
 }
