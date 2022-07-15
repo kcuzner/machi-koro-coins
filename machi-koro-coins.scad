@@ -26,6 +26,11 @@ tails_depth = 0.5 * mm;
 
 ring_size = 2 * mm;
 
+crown_bot_y = -6 * mm;
+crown_bot_width = 7 * mm;
+crown_top_y = 7 * mm;
+crown_top_width = 10 * mm;
+
 module Heads() {
   translate([0, 0, -pad_manifold]) {
     translate([svg_x_tweak, svg_y_tweak, 0]) {
@@ -45,10 +50,13 @@ module Heads() {
 }
 
 module Tails() {
+  polygon(points = [[-crown_bot_width/2, crown_bot_y/2], [crown_bot_width/2, crown_bot_y/2],
+    [crown_top_width/2, crown_top_y/2], [-crown_top_width/2, crown_top_y/2]]);
 }
 
 module OneCoin() { // `make` me
   Heads();
+  Tails();
 }
 
 OneCoin();
