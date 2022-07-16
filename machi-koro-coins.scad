@@ -16,25 +16,26 @@ $fn = 180;
 
 pad_manifold = 0.01 * mm; //padding for maintaining a manifold (avoiding zero-width shapes)
 
-svg_size = 15 * mm;
+svg_size = 21 * mm;
 svg_x_tweak = -1 * mm;
 svg_y_tweak = 0 * mm;
 
-coin_height = 2 * mm;
-heads_height = 0.5 * mm;
-tails_depth = 0.5 * mm;
+coin_height = 3 * mm;
+heads_height = 0.75 * mm;
+tails_depth = 0.75 * mm;
 
-ring_size = 1 * mm;
+ring_size = 2 * mm;
 
-crown_bot_y = -7 * mm;
-crown_bot_width = 7 * mm;
-crown_top_y = 7 * mm;
-crown_top_width = 9 * mm;
+crown_bot_y = -10 * mm;
+crown_bot_width = 10 * mm;
+crown_top_y = 10 * mm;
+crown_top_width = 13 * mm;
 
-star_inner_size = 0.3 * mm;
-star_outer_size = 0.75 * mm;
+star_inner_size = 0.5 * mm;
+star_outer_size = 1.2 * mm;
 
 reeding_size = 0.5 * mm;
+reeding_res = 15;
 
 module Heads() {
   translate([0, 0, -pad_manifold]) {
@@ -109,7 +110,7 @@ module Reeding(d, h, size) {
     a = i * incr;
     rotate([0, 0, a]) {
       translate([d/2, 0, h/2]) {
-        cylinder(h=h, d=size, center=true);
+        cylinder(h=h, d=size, center=true, $fn=reeding_res);
       }
     }
   }
