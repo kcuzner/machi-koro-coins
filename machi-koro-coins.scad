@@ -34,6 +34,8 @@ crown_top_width = 9 * mm;
 star_inner_size = 0.3 * mm;
 star_outer_size = 0.75 * mm;
 
+reeding_size = 0.5 * mm;
+
 module Heads() {
   translate([0, 0, -pad_manifold]) {
     translate([svg_x_tweak, svg_y_tweak, 0]) {
@@ -99,6 +101,20 @@ module Tails() {
   }
 }
 
+module Reeding(d, h, size) {
+  circ = PI * d;
+  count = round(circ / (size*1.375 ));
+  incr = 360 / count;
+  for (i = [0 : count-1]) {
+    a = i * incr;
+    rotate([0, 0, a]) {
+      translate([d/2, 0, h/2]) {
+        cylinder(h=h, d=size, center=true);
+      }
+    }
+  }
+}
+
 module OneCoin() { // `make` me
   difference() {
     union() {
@@ -108,6 +124,9 @@ module OneCoin() { // `make` me
       cylinder(h=coin_height - heads_height, d=svg_size);
     }
     Tails();
+    translate([0, 0, -pad_manifold]) {
+      Reeding(d=svg_size, h=coin_height+pad_manifold*2, size=reeding_size);
+    }
   }
 }
 
