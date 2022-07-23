@@ -1,7 +1,7 @@
-// Machi Koro Replacement Coints
+// Machi Koro Replacement Coins
+// Kevin Cuzner
+//
 // Material: SLA Resin
-// Nozzle: 0.3mm
-// Layer height: <0.21875mm
 
 
 // We use various dimensions, depending on where I pulled them from (PCB CAD is inches, physical measurements are mm)
