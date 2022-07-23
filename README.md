@@ -16,6 +16,6 @@ facing the plate, especially if you're printing many copies at once.
 
 ## Previews
 
-![Upper side](images/Upper Side.png)
+![Heads](images/heads.png)
 
-![Bottom side](images/Bottom Side.png)
+![Tails](images/tails.png)
